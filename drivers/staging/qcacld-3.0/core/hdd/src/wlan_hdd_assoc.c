@@ -2387,7 +2387,6 @@ QDF_STATUS hdd_roam_register_sta(struct hdd_adapter *adapter,
 		hdd_debug("ULA auth Sta: " QDF_MAC_ADDR_FMT
 			  " Changing TL state to CONNECTED at Join time",
 			  QDF_MAC_ADDR_REF(txrx_desc.peer_addr.bytes));
-
 		qdf_status = hdd_conn_change_peer_state(
 						adapter, roam_info,
 						txrx_desc.peer_addr.bytes,
