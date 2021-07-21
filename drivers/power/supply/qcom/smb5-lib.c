@@ -9630,9 +9630,11 @@ static void smblib_lpd_detach_work(struct work_struct *work)
 		chg->lpd_stage = LPD_STAGE_NONE;
 }
 
+#if defined(CONFIG_USB_DUAL_ROLE) || defined(CONFIG_DEBUG_FS)
 static char *dr_mode_text[] = {
-	"ufp", "dfp", "none"
+    "ufp", "dfp", "none"
 };
+#endif
 
 int smblib_force_dr_mode(struct smb_charger *chg, int mode)
 {
