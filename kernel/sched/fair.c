@@ -87,10 +87,10 @@ walt_dec_cfs_rq_stats(struct cfs_rq *cfs_rq, struct task_struct *p) {}
  * (to see the precise effective timeslice length of your workload,
  *  run vmstat and monitor the context-switches (cs) field)
  *
- * (default: 6ms * (1 + ilog(ncpus)), units: nanoseconds)
+ * (default: 1ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_latency			= 4000000ULL;
-unsigned int normalized_sysctl_sched_latency		= 4000000ULL;
+unsigned int sysctl_sched_latency			= 1000000ULL;
+unsigned int normalized_sysctl_sched_latency		= 1000000ULL;
 
 /*
  * Enable/disable honoring sync flag in energy-aware wakeups.
@@ -117,15 +117,15 @@ enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_L
 /*
  * Minimal preemption granularity for CPU-bound tasks:
  *
- * (default: 0.75 msec * (1 + ilog(ncpus)), units: nanoseconds)
+ * (default: 0.10 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_min_granularity		= 500000ULL;
-unsigned int normalized_sysctl_sched_min_granularity	= 500000ULL;
+unsigned int sysctl_sched_min_granularity		= 1000000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 1000000ULL;
 
 /*
  * This value is kept at sysctl_sched_latency/sysctl_sched_min_granularity
  */
-static unsigned int sched_nr_latency = 8;
+static unsigned int sched_nr_latency = 4;
 
 /*
  * After fork, child runs first. If set to 0 (default) then
@@ -179,18 +179,18 @@ int __weak arch_asym_cpu_priority(int cpu)
  * to consumption or the quota being specified to be smaller than the slice)
  * we will always only issue the remaining available time.
  *
- * (default: 5 msec, units: microseconds)
+ * (default: 1 msec, units: microseconds)
  */
-unsigned int sysctl_sched_cfs_bandwidth_slice		= 5000UL;
+unsigned int sysctl_sched_cfs_bandwidth_slice		= 1000UL;
 #endif
 
 /*
  * The margin used when comparing utilization with CPU capacity:
  * util * margin < capacity * 1024
  *
- * (default: ~20%)
+ * (default: ~2%)
  */
-unsigned int capacity_margin				= 1280;
+unsigned int capacity_margin				= 512;
 
 /* Migration margins */
 unsigned int sysctl_sched_capacity_margin_up[MAX_MARGIN_LEVELS] = {
@@ -766,7 +766,7 @@ static inline u64 calc_delta_fair(u64 delta, struct sched_entity *se)
  */
 static u64 __sched_period(unsigned long nr_running)
 {
-	if (unlikely(nr_running > sched_nr_latency))
+	if (nr_running > sched_nr_latency)
 		return nr_running * sysctl_sched_min_granularity;
 	else
 		return sysctl_sched_latency;
