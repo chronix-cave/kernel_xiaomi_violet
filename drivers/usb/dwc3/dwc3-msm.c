@@ -934,7 +934,7 @@ static void gsi_get_channel_info(struct usb_ep *ep,
 {
 	struct dwc3_ep *dep = to_dwc3_ep(ep);
 	int last_trb_index = 0;
-	struct dwc3	*dwc = dep->dwc;
+	struct dwc3	*dwc __maybe_unused = dep->dwc;
 	struct usb_gsi_request *request = ch_info->ch_req;
 
 	/* Provide physical USB addresses for DEPCMD and GEVENTCNT registers */
@@ -1028,7 +1028,7 @@ static void gsi_store_ringbase_dbl_info(struct usb_ep *ep,
 {
 	struct dwc3_ep *dep = to_dwc3_ep(ep);
 	struct dwc3	*dwc = dep->dwc;
-	struct dwc3_msm *mdwc = dev_get_drvdata(dwc->dev->parent);
+	struct dwc3_msm *mdwc __maybe_unused = dev_get_drvdata(dwc->dev->parent);
 	int n = ep->ep_intr_num - 1;
 
 	dwc3_msm_write_reg(mdwc->base,
@@ -1146,7 +1146,7 @@ static int gsi_updatexfer_for_ep(struct usb_ep *ep,
 	struct dwc3_trb *trb;
 	struct dwc3_gadget_ep_cmd_params params;
 	struct dwc3_ep *dep = to_dwc3_ep(ep);
-	struct dwc3 *dwc = dep->dwc;
+	struct dwc3 *dwc __maybe_unused = dep->dwc;
 
 	for (i = 0; i < num_trbs - 1; i++) {
 		trb = &dep->trb_pool[i];
