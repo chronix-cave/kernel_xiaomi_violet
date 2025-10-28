@@ -137,3 +137,4 @@ build.sh
 clang/
 out/
 regen.sh
+snowflake-*
