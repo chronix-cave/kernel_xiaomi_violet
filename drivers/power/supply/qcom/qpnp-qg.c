@@ -43,6 +43,11 @@
 #include "qg-battery-profile.h"
 #include "qg-defs.h"
 
+#undef dev_info
+#undef pr_info
+#define dev_info dev_dbg
+#define pr_info pr_debug
+
 static int default_rate_seq[2] = {0, 30};
 static bool is_batt_vendor_swd;
 static bool is_batt_vendor_nvt;

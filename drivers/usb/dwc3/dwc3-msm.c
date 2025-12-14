@@ -74,6 +74,9 @@
 #undef printk_deferred
 #define printk_deferred(x, ...)
 
+#undef pr_info
+#define dev_info dev_dbg
+#define pr_info pr_debug
 
 #define SDP_CONNETION_CHECK_TIME 10000 /* in ms */
 

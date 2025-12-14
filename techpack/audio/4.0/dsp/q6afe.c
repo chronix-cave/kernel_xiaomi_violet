@@ -23,6 +23,11 @@
 #include "adsp_err.h"
 #include "q6afecal-hwdep.h"
 
+#undef dev_info
+#undef pr_info
+#define dev_info dev_dbg
+#define pr_info pr_debug
+
 #define WAKELOCK_TIMEOUT	5000
 #define AFE_CLK_TOKEN	1024
 enum {

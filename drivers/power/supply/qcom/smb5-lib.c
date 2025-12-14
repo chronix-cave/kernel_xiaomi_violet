@@ -32,10 +32,16 @@
 #include "storm-watch.h"
 #include "schgm-flash.h"
 
+#undef dev_info
+#undef pr_info
+#define dev_info dev_dbg
+#define pr_info pr_debug
+
 #define smblib_err(chg, fmt, ...)
 #define smblib_dbg(chg, reason, fmt, ...)
 #undef dev_info
 #define dev_info(x, ...)
+
 #undef dev_dbg
 #define dev_dbg(x, ...)
 #undef dev_err

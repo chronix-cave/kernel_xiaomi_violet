@@ -38,6 +38,11 @@
 #undef printk_deferred
 #define printk_deferred(x, ...)
 
+#undef dev_info
+#undef pr_info
+#define dev_info dev_dbg
+#define pr_info pr_debug
+
 #define STEP_CHG_VOTER		"STEP_CHG_VOTER"
 #define JEITA_VOTER		"JEITA_VOTER"
 #define DYNAMIC_FV_VOTER	"DYNAMIC_FV_VOTER"

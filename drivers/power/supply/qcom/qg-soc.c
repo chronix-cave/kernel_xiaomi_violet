@@ -28,6 +28,11 @@
 #include "qg-profile-lib.h"
 #include "qg-soc.h"
 
+#undef dev_info
+#undef pr_info
+#define dev_info dev_dbg
+#define pr_info pr_debug
+
 #define DEFAULT_UPDATE_TIME_MS			64000
 #define SOC_SCALE_HYST_MS			2000
 #define VBAT_LOW_HYST_UV			5000
