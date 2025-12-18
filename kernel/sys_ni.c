@@ -235,6 +235,10 @@ cond_syscall(sys_fanotify_init);
 cond_syscall(sys_fanotify_mark);
 cond_syscall(compat_sys_fanotify_mark);
 
+/* epoll */
+cond_syscall(sys_epoll_pwait2);
+cond_syscall(compat_sys_epoll_pwait2);
+
 /* open by handle */
 cond_syscall(sys_name_to_handle_at);
 cond_syscall(sys_open_by_handle_at);
